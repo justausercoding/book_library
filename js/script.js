@@ -23,68 +23,72 @@ function addToMyLibraryArray(book) {
 
 function displayBooksHtml(booksArray) {
     let index = 0;
-    for (let currentBook of booksArray) {
+    for (let book of booksArray) {
         const table = document.querySelector(".table");
 
-        const tableRow = document.createElement("tr");
-        tableRow.setAttribute("data-index", index);
+        // -- create elements --
+        const row = document.createElement("tr");
+        const bookTitle = document.createElement("td");
+        const bookAuthor = document.createElement("td");
+        const bookPages = document.createElement("td");
+        const bookYear = document.createElement("td");
+        const bookFinished = document.createElement("td");
+        const btnFinished = document.createElement("button");
+        const bookDelete = document.createElement("td");
+        const btnDelete = document.createElement("button");
+        const imgDelete = document.createElement("img");
 
-        const tableDataTitle = document.createElement("td");
-        tableDataTitle.textContent = currentBook.title;
-        tableRow.appendChild(tableDataTitle);
-        
-        const tableDataAuthor = document.createElement("td");
-        tableDataAuthor.textContent = currentBook.author;
-        tableRow.appendChild(tableDataAuthor);
-
-        const tableDataPages = document.createElement("td");
-        tableDataPages.textContent = currentBook.pages;
-        tableRow.appendChild(tableDataPages);
-
-        const tableDataYear = document.createElement("td");
-        tableDataYear.textContent = currentBook.year;
-        tableRow.appendChild(tableDataYear);
-
-        const tableDataFinished = document.createElement("td");
-        const tableButtonFinished = document.createElement("button");
-        if (currentBook.finished == "yes") {
-            tableButtonFinished.textContent = "Finished";
-            tableButtonFinished.classList.add("button-finished");
+        // -- set attributes, classes, etc. --
+        row.setAttribute("data-index", index);
+        bookTitle.textContent = book.title;
+        bookAuthor.textContent = book.author;
+        bookPages.textContent = book.pages;
+        bookYear.textContent = book.year;
+        if (book.finished == "yes") {
+            btnFinished.textContent = "Finished";
+            btnFinished.classList.add("button-finished");
         } else {
-            tableButtonFinished.textContent = "Reading";
-            tableButtonFinished.classList.add("button-reading");
+            btnFinished.textContent = "Reading";
+            btnFinished.classList.add("button-reading");
         }
-        tableDataFinished.appendChild(tableButtonFinished);
-        tableRow.appendChild(tableDataFinished);
+        btnDelete.setAttribute("data-index", index);
+        btnDelete.classList.add("button-delete");
+        imgDelete.setAttribute("src", "./img/trash-can-outline.svg")
+        imgDelete.classList.add("image-delete")
 
-        const tableDataDelete = document.createElement("td");
-        const tableButtonDelete = document.createElement("button");
-        tableButtonDelete.textContent = "Delete";
-        tableButtonDelete.setAttribute("data-index", index);
-        tableRow.appendChild(tableDataDelete);
-        tableDataDelete.appendChild(tableButtonDelete);
-        table.appendChild(tableRow);
+        // -- append to DOM --
+        row.appendChild(bookTitle);
+        row.appendChild(bookAuthor);
+        row.appendChild(bookPages);
+        row.appendChild(bookYear);
+        bookFinished.appendChild(btnFinished);
+        row.appendChild(bookFinished);
+        btnDelete.appendChild(imgDelete);
+        bookDelete.appendChild(btnDelete);
+        row.appendChild(bookDelete);
+        table.appendChild(row);
 
-        tableButtonFinished.addEventListener("click", (e) => {
+        // -- event listener --
+        btnFinished.addEventListener("click", (e) => {
             // change object
-            currentBook.changeFinishedStatus();
+            book.changeFinishedStatus();
 
             // change button
-            if (currentBook.finished == "yes") {
-                tableButtonFinished.textContent = "Finished";
-                tableButtonFinished.classList.remove("button-reading");
-                tableButtonFinished.classList.add("button-finished");
+            if (book.finished == "yes") {
+                btnFinished.textContent = "Finished";
+                btnFinished.classList.remove("button-reading");
+                btnFinished.classList.add("button-finished");
             } else {
-                tableButtonFinished.textContent = "Reading";
-                tableButtonFinished.classList.remove("button-finished");
-                tableButtonFinished.classList.add("button-reading");
+                btnFinished.textContent = "Reading";
+                btnFinished.classList.remove("button-finished");
+                btnFinished.classList.add("button-reading");
             }
         });
 
-        tableButtonDelete.addEventListener("click", (e) => {
+        btnDelete.addEventListener("click", (e) => {
             let removeIndex = e.currentTarget.getAttribute("data-index");
             myLibrary.splice(removeIndex, 1);
-            table.removeChild(tableRow);
+            table.removeChild(row);
         });
         index++;
     }
@@ -123,10 +127,10 @@ buttonAddBook.addEventListener("click", () => {
 
 
 // ----- Sample books -----
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, 2022, "yes");
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 322, 2022, "yes");
 addToMyLibraryArray(theHobbit);
 
-const missingPresident = new Book("The President is Missing", "Bill Clinton and James Patterson", 480, 2023, "no");
+const missingPresident = new Book("The President is Missing", "Bill Clinton and James Patterson", 528, 2023, "no");
 addToMyLibraryArray(missingPresident);
 
 

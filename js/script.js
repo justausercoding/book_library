@@ -133,14 +133,4 @@ addToMyLibraryArray(theHobbit);
 const missingPresident = new Book("The President is Missing", "Bill Clinton and James Patterson", 528, 2023, "no");
 addToMyLibraryArray(missingPresident);
 
-
 displayBooksHtml(myLibrary);
-
-
-
-
-
-
-
-
-

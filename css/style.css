@@ -1,12 +1,139 @@
+/* ---- RESET ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0px;
+}
+
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* ---- PROJECT ---- */
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    flex-basis: 70px;
+    align-self: stretch;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .table {
-    background-color: honeydew;
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 800px;
+}
+
+th, td {
+    text-align: left;
+    padding: 3px 10px;
+}
+
+tr > th {
+    background-color: rgb(240, 240, 240);
+}
+
+.button-reading,
+.button-finished {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 .button-reading {
-    background-color: darkturquoise;
+    background-color: rgba(0, 206, 209, 0.158);
+    border: none;
 }
 
 .button-finished {
-    background-color: greenyellow;
+    background-color: rgba(172, 255, 47, 0.245);
 
+}
+.button-delete {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    background-color: white;
+}
+
+#add-book {
+    border: 0.5px solid white;
+    background-color: rgb(57, 160, 166);
+    line-height: 1rem;
+    box-shadow: 2px 4px 5px 0px #8383835e;
+
+    color: white;
+    font-weight: 900;
+    font-size: 2rem;
+    padding: 20px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* -- DIALOG -- */
+dialog {
+    align-self: center;
+    justify-self: center;
+
+    border: none;
+    border-radius: 10px;
+}
+
+dialog::backdrop {
+    background-color: rgb(57, 160, 166);
+    opacity: 60%;
+}
+
+#form {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr) 1.5fr;
+}
+
+#form > div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    padding: 5px;
+}
+
+input[type="checkbox"] {
+    justify-self: start;
+    height: 20px;
+    width: 20px;
+}
+
+div > button[type="submit"] {
+    grid-column: 1 / 3;
+    justify-self: center;
+
+    border: none;
+    border-radius: 10px;
+    background-color:  rgb(57, 160, 166);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0px 100px;
+    margin: 0;
 }

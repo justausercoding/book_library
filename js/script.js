@@ -47,7 +47,6 @@ function displayBooksHtml(booksArray) {
 
         const tableDataFinished = document.createElement("td");
         const tableButtonFinished = document.createElement("button");
-        console.log(currentBook.finished);
         if (currentBook.finished == "yes") {
             tableButtonFinished.textContent = "Finished";
             tableButtonFinished.classList.add("button-finished");
@@ -104,7 +103,6 @@ function removeBooksHtml() {
 form.addEventListener("submit", () => {
     let form = document.querySelector("#form");
     let data = new FormData(form);
-    data.forEach((entry) => {console.log(entry)});
     addToMyLibraryArray(new Book(
         data.get("title"),
         data.get("author"),

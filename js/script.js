@@ -141,18 +141,27 @@ class ApiHtml {
     eventListenerSubmitUpdate() {
         // -> when form is submitted: a new book is created, DOM is updated with the new books
         let form = document.querySelector("#form");
-        form.addEventListener("submit", () => {
-            let data = new FormData(form);
-            this.library.addOneBook(new this.bookClass(
-                data.get("title"),
-                data.get("author"),
-                data.get("pages"),
-                data.get("year"),
-                data.get("finished")));
+        let buttonSubmit = document.querySelector("#form button[type='submit']")
+        let divMessage = document.querySelector("#form .form-message");
+
+        buttonSubmit.addEventListener("click", (e) => {
+            if (form.checkValidity() === false) {
+                divMessage.textContent = "Please fill in the required fields"
+                e.preventDefault();
+            } else {
+                let data = new FormData(form);
+                this.library.addOneBook(new this.bookClass(
+                    data.get("title"),
+                    data.get("author"),
+                    data.get("pages"),
+                    data.get("year"),
+                    data.get("finished")
+                ));
     
             this.removeBooks();
             this.displayBooks();
             form.reset();
+            }
         });
     }
     eventListenerShowModal() {
